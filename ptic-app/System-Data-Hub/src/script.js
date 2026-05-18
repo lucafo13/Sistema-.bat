@@ -1,8 +1,11 @@
+import { invoke } from '@tauri-apps/api/core';
+
 document.addEventListener('DOMContentLoaded', () => {
 let guer = document.getElementById('hamburger');
 let menu = document.getElementById('sidemenu');
 let close = document.getElementById('btn-close');
 let overlay = document.getElementById('overlay');
+let turnoff = document.getElementById('turnoff');
 
 let turnbtn = document.getElementById("turnbtn");
 turnbtn.addEventListener('click', () => {
@@ -28,15 +31,15 @@ console.log(guer, menu, close, overlay);
 });
 document.getElementById('terminal-btn').addEventListener('click', () => {
   invoke('open_cmd');
-});
-// function teste(){
-//   let negoco = document.getElementById("pop");
-//   neg
-// }
-// window.addEventListener('load', function(){
-//   window.location.href="index.html#pop"
-//   setTimeout(() => {
-//     window.location.href="index.html"
+  });
+  // function teste(){
+  //   let negoco = document.getElementById("pop");
+  //   neg
+  // }
+  // window.addEventListener('load', function(){
+  //   window.location.href="index.html#pop"
+  //   setTimeout(() => {
+  //     window.location.href="index.html"
 //   }, 30000);
 // })
 let cu = document.getElementById("cu");
@@ -53,3 +56,5 @@ const back =() => {
   window.location.href = "index.html";
 }
 document.getElementById('off').addEventListener('click', back);
+
+console.error("O sistema de desligamento não funciona, por favor, feche a janela para desligar o computador.");

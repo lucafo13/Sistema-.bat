@@ -19,12 +19,6 @@ document.addEventListener('DOMContentLoaded', () => {
     invoke('open_cmd');
   });
   document.getElementById('scandisk-btn').addEventListener('click', scandisk);
-  document.getElementById('clean').addEventListener('click', () => {
-    invoke('clean_temp_files');
-  });
-  document.getElementById('update').addEventListener('click', () => {
-    invoke('update_drivers');
-  })
   document.getElementById('dash').addEventListener('click', () => {
     invoke('scriptmenu');
   });
@@ -58,7 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('btn-t').addEventListener('click', () => {
       invoke('turnoff')
     });
-    document.getElementById('redeip').addEventListener('click', () => {
+    document.getElementById('printred').addEventListener('click', () => {
       invoke('redeip')
     });
     document.getElementById('CuC').addEventListener('click', () => {
@@ -97,5 +91,6 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById("powershell-btn").addEventListener('click', () => {
       invoke('powershell')
     });
+
 });
 

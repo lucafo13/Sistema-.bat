@@ -6,7 +6,35 @@ use std::process::Command;
 fn main() {
     tauri::Builder::default()
         .plugin(tauri_plugin_opener::init())
-        .invoke_handler(tauri::generate_handler![powershell,tarefa, turnoff, restart, sleep, formatarc, formatard, formatarf, formatarg, attdriver, open_cmd, rodar, scandisk, scriptmenu, limpeza, redeip, cunitc, dunitd, funite, gunitg, dvscode, ddiscord, dspotify, dsteam, dzapzap, dfirefox])
+        .invoke_handler(tauri::generate_handler![
+            powershell,
+            tarefa,
+            turnoff,
+            restart,
+            sleep,
+            formatarc,
+            formatard,
+            formatarf,
+            formatarg,
+            attdriver,
+            open_cmd,
+            rodar,
+            scandisk,
+            scriptmenu,
+            limpeza,
+            redeip,
+            cunitc,
+            dunitd,
+            funite,
+            gunitg,
+            dvscode,
+            ddiscord,
+            dspotify,
+            dsteam,
+            dzapzap,
+            dfirefox,
+            ram
+        ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }
@@ -14,194 +42,427 @@ fn main() {
 #[tauri::command]
 fn open_cmd() {
     Command::new("cmd")
-        .args(["/C", "start", "", "cmd.exe"])
+        .args(["/C", "start", "", "cmd"])
         .spawn()
-        .expect("Failed to open cmd");
+        .unwrap();
 }
 
 #[tauri::command]
 fn rodar() {
     Command::new("cmd")
-        .args(["/C", "start", "", "cmd.exe"])
+        .args(["/C", "start", "", "cmd"])
         .spawn()
-        .expect("falhou a executar o script");
+        .unwrap();
 }
 
 #[tauri::command]
 fn scandisk() {
     Command::new("cmd")
-        .args(["/C", "chkdsk /f"])
+        .args([
+            "/C",
+            "start",
+            "",
+            "cmd",
+            "/K",
+            "chkdsk",
+            "/f",
+        ])
         .spawn()
-        .expect("Failed to open scandisk");
+        .unwrap();
 }
 
 #[tauri::command]
 fn scriptmenu() {
     Command::new("cmd")
-        .args(["/C", "../../../Sistema-.bat-main/initialcommit.bat", "cmd.exe"])
+        .args([
+            "/C",
+            "start",
+            "",
+            "cmd",
+            "/K",
+            "../../../Sistema-.bat-main/initialcommit.bat",
+        ])
         .spawn()
-        .expect("Failed to run script");
+        .unwrap();
 }
-#[tauri::command]
-fn limpeza(){
-    Command::new("cmd")
-        .args(["/C", "cleanmgr"])
-        .spawn()
-        .expect("Failed to run script");
-}
-#[tauri::command]
-fn attdriver(){
-    Command::new("cmd")
-        .args(["/C", "winget upgrade --all --include-unknown"])
-        .spawn()
-        .expect("deu pau fdp");
-}
-use std::env;
 
 #[tauri::command]
-fn formatarc(){
+fn limpeza() {
     Command::new("cmd")
-        .args(["/C", "format C: /FS:NTFS /Q /V:NovaUnidade"])
+        .args([
+            "/C",
+            "start",
+            "",
+            "cmd",
+            "/K",
+            "cleanmgr",
+        ])
         .spawn()
-        .expect("Failed to run script");
+        .unwrap();
 }
+
 #[tauri::command]
-fn formatard(){
+fn attdriver() {
     Command::new("cmd")
-        .args(["/C", "format D: /FS:NTFS /Q /V:NovaUnidade"])
+        .args([
+            "/C",
+            "start",
+            "",
+            "cmd",
+            "/K",
+            "winget",
+            "upgrade",
+            "--all",
+            "--include-unknown",
+        ])
         .spawn()
-        .expect("Failed to run script");
+        .unwrap();
 }
+
 #[tauri::command]
-fn formatarf(){
+fn formatarc() {
     Command::new("cmd")
-        .args(["/C", "format F: /FS:NTFS /Q /V:NovaUnidade"])
+        .args([
+            "/C",
+            "start",
+            "",
+            "cmd",
+            "/K",
+            "format",
+            "C:",
+            "/FS:NTFS",
+            "/Q",
+            "/V:NovaUnidade",
+        ])
         .spawn()
-        .expect("Failed to run script");
+        .unwrap();
 }
+
 #[tauri::command]
-fn formatarg(){
+fn formatard() {
     Command::new("cmd")
-        .args(["/C", "format G: /FS:NTFS /Q /V:NovaUnidade"])
+        .args([
+            "/C",
+            "start",
+            "",
+            "cmd",
+            "/K",
+            "format",
+            "D:",
+            "/FS:NTFS",
+            "/Q",
+            "/V:NovaUnidade",
+        ])
         .spawn()
-        .expect("Failed to run script");
+        .unwrap();
 }
+
 #[tauri::command]
-fn turnoff(){
+fn formatarf() {
     Command::new("cmd")
-        .args(["/C", "shutdown /s /t 5"])
+        .args([
+            "/C",
+            "start",
+            "",
+            "cmd",
+            "/K",
+            "format",
+            "F:",
+            "/FS:NTFS",
+            "/Q",
+            "/V:NovaUnidade",
+        ])
         .spawn()
-        .expect("Failed to run script");
+        .unwrap();
 }
+
 #[tauri::command]
-fn restart(){   
+fn formatarg() {
     Command::new("cmd")
-        .args(["/C", "shutdown /r /t 5 "])
+        .args([
+            "/C",
+            "start",
+            "",
+            "cmd",
+            "/K",
+            "format",
+            "G:",
+            "/FS:NTFS",
+            "/Q",
+            "/V:NovaUnidade",
+        ])
         .spawn()
-        .expect("Failed to run script");
+        .unwrap();
 }
+
 #[tauri::command]
-fn sleep(){
+fn turnoff() {
     Command::new("cmd")
-        .args(["/C", "rundll32.exe powrprof.dll,SetSuspendState 0,1,0"])
+        .args([
+            "/C",
+            "shutdown /s /t 5"
+        ])
         .spawn()
-        .expect("Failed to run script");
+        .unwrap();
 }
+
 #[tauri::command]
-fn redeip(){
+fn restart() {
     Command::new("cmd")
-        .args(["/C", "ipconfig /release && ipconfig /renew"])
+        .args([
+            "/C",
+            "shutdown /r /t 5"
+        ])
         .spawn()
-        .expect("Failed to run script");
+        .unwrap();
 }
+
 #[tauri::command]
-fn cunitc(){
+fn sleep() {
     Command::new("cmd")
-        .args(["/C", "chkdsk C: /f /r"])
+        .args([
+            "/C",
+            "rundll32.exe powrprof.dll,SetSuspendState 0,1,0"
+        ])
         .spawn()
-        .expect("Failed to run script");
+        .unwrap();
 }
+
 #[tauri::command]
-fn dunitd(){
+fn redeip() {
     Command::new("cmd")
-        .args(["/C", "chkdsk D: /f /r"])
+        .args([
+            "/C",
+            "start",
+            "",
+            "cmd",
+            "/K",
+            "ipconfig",
+            "/release",
+            "&&",
+            "ipconfig",
+            "/renew",
+        ])
         .spawn()
-        .expect("Failed to run script");
+        .unwrap();
 }
+
 #[tauri::command]
-fn funite(){
+fn cunitc() {
     Command::new("cmd")
-        .args(["/C", "chkdsk F: /f /r"])
+        .args([
+            "/C",
+            "start",
+            "",
+            "cmd",
+            "/K",
+            "chkdsk",
+            "C:",
+            "/f",
+            "/r",
+        ])
         .spawn()
-        .expect("Failed to run script");
+        .unwrap();
 }
+
 #[tauri::command]
-fn gunitg(){    
+fn dunitd() {
     Command::new("cmd")
-        .args(["/C", "chkdsk G: /f /r"])
+        .args([
+            "/C",
+            "start",
+            "",
+            "cmd",
+            "/K",
+            "chkdsk",
+            "D:",
+            "/f",
+            "/r",
+        ])
         .spawn()
-        .expect("Failed to run script");
+        .unwrap();
 }
+
 #[tauri::command]
-fn dvscode(){
+fn funite() {
     Command::new("cmd")
-        .args(["/C", "winget install --id=Microsoft.VisualStudioCode -e --source=winget"])
+        .args([
+            "/C",
+            "start",
+            "",
+            "cmd",
+            "/K",
+            "chkdsk",
+            "F:",
+            "/f",
+            "/r",
+        ])
         .spawn()
-        .expect("Failed to run script");
+        .unwrap();
 }
+
 #[tauri::command]
-fn ddiscord(){
+fn gunitg() {
     Command::new("cmd")
-        .args(["/C", "winget install --id=Discord.Discord -e --source=winget"])
+        .args([
+            "/C",
+            "start",
+            "",
+            "cmd",
+            "/K",
+            "chkdsk",
+            "G:",
+            "/f",
+            "/r",
+        ])
         .spawn()
-        .expect("Failed to run script");
+        .unwrap();
 }
+
 #[tauri::command]
-fn dspotify(){
+fn dvscode() {
     Command::new("cmd")
-        .args(["/C", "winget install --id=Spotify.Spotify -e --source=winget"])
+        .args([
+            "/C",
+            "start",
+            "",
+            "cmd",
+            "/K",
+            "winget",
+            "install",
+            "--id=Microsoft.VisualStudioCode",
+            "-e",
+            "--source=winget",
+        ])
         .spawn()
-        .expect("Failed to run script");
+        .unwrap();
 }
+
 #[tauri::command]
-fn dsteam(){    
+fn ddiscord() {
     Command::new("cmd")
-        .args(["/C", "winget install --id=Valve.Steam -e --source=winget"])
+        .args([
+            "/C",
+            "start",
+            "",
+            "cmd",
+            "/K",
+            "winget",
+            "install",
+            "--id=Discord.Discord",
+            "-e",
+            "--source=winget",
+        ])
         .spawn()
-        .expect("Failed to run script");
+        .unwrap();
 }
+
 #[tauri::command]
-fn dzapzap(){
+fn dspotify() {
     Command::new("cmd")
-        .args(["/C", "winget install --id=WhatsApp.WhatsAppDesktop -e --source=winget"])
+        .args([
+            "/C",
+            "start",
+            "",
+            "cmd",
+            "/K",
+            "winget",
+            "install",
+            "--id=Spotify.Spotify",
+            "-e",
+            "--source=winget",
+        ])
         .spawn()
-        .expect("Failed to run script");
+        .unwrap();
 }
+
 #[tauri::command]
-fn dfirefox(){
+fn dsteam() {
     Command::new("cmd")
-        .args(["/C", "winget install --id=Mozilla.Firefox -e --source=winget"])
+        .args([
+            "/C",
+            "start",
+            "",
+            "cmd",
+            "/K",
+            "winget",
+            "install",
+            "--id=Valve.Steam",
+            "-e",
+            "--source=winget",
+        ])
         .spawn()
-        .expect("Failed to run script");
+        .unwrap();
 }
+
 #[tauri::command]
-fn ram(){
+fn dzapzap() {
     Command::new("cmd")
-        .args(["/C", "systeminfo | findstr /C:\"Total Physical Memory\""])
+        .args([
+            "/C",
+            "start",
+             "",
+            "cmd",
+            "/K",
+            "winget",
+            "install",
+            "--id=WhatsApp.WhatsAppDesktop",
+            "-e",
+            "--source=winget",
+        ])
         .spawn()
-        .expect("Failed to run script");
+        .unwrap();
 }
+
 #[tauri::command]
-fn tarefa(){
+fn dfirefox() {
     Command::new("cmd")
-        .args(["/C", "taskmgr"])
+        .args([
+            "/C",
+            "start",
+            "",
+            "cmd",
+            "/K",
+            "winget",
+            "install",
+            "--id=Mozilla.Firefox",
+            "-e",
+            "--source=winget",
+        ])
         .spawn()
-        .expect("Deu pau patrão");
+        .unwrap();
 }
+
 #[tauri::command]
-fn powershell(){
+fn ram() {
     Command::new("cmd")
-        .args(["/C", "start", "", "powershell.exe"])
+        .args([
+            "/C",
+            "start",
+            "",
+            "cmd",
+            "/K",
+            "systeminfo",
+            "|",
+            "findstr",
+            "/C:Total Physical Memory",
+        ])
         .spawn()
-        .expect("Failed to open powershell");
+        .unwrap();
+}
+
+#[tauri::command]
+fn tarefa() {
+    Command::new("cmd")
+        .args(["/C", "start", "", "taskmgr"])
+        .spawn()
+        .unwrap();
+}
+
+#[tauri::command]
+fn powershell() {
+    Command::new("cmd")
+        .args(["/C", "start", "", "powershell"])
+        .spawn()
+        .unwrap();
 }
